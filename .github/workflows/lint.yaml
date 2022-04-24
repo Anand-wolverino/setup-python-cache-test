@@ -6,11 +6,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
+    - name: Setup Python
     - uses: actions/setup-python@v3
+      with:
+        python-version: 3.10.3
+    - name: Install poetry
+      run: pipx install poetry
+    - name: Cache poetry dependencies
+      uses: action/setup-python@v3
       with:
         python-version: '3.10.3'
         cache: 'poetry'
-    - name: Install poetry
-      run: pipx install poetry
     - run: poetry install
 
